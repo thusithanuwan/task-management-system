@@ -18,3 +18,9 @@ async function initPool() {
         password:process.env.password,
         connectionLimit:+process.env.connection_limit!
     })};
+
+type Task = {
+    id:number,
+    description:string,
+    status:'COMPLETE' | 'NOT_COMPLETED' | undefined
+}
