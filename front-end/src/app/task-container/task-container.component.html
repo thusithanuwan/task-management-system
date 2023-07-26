@@ -6,18 +6,18 @@
       <div class="col-md-6 bg-white shadow">
 
         <div class="card bg-warning mt-4">
-          <h4 class="text-white p-3 pt-2 pb-2">To Do App</h4>
+          <h4 class="text-white p-3 pt-2 pb-2 text-center">To Do App</h4>
         </div>
 
         <div class="shadow">
           <div class="input-group p-4">
             <input #txt type="text" class="form-control" placeholder="Enter task " name="task" >
-            <button class="btn btn-outline-success" type="button" (click)="saveTask(txt)" >+</button>
+            <button class="btn btn-outline-success" type="button" (click)="saveTask(txt)" ><fa-icon [icon]="faPlus"></fa-icon></button>
           </div>
         </div>
 
-        <h4 class="text-primary mt-4">Tasks : </h4>
 
+        <h4 class="text-primary m-4 mb-2">Tasks : </h4>
         <div style="overflow-y: auto; height: 350px;">
           <div class="m-3" *ngFor="let task of taskList">
             <div>
@@ -29,8 +29,9 @@
                   <label for="task-{{task.id}}" class="form-check-label"><div class="card border-0 ">{{task.description}}</div></label>
                 </div>
                 <div>
-                  <button (click)="editTask(task)"  class="btn btn-outline-primary  me-2" data-bs-toggle="modal" type="button" data-bs-target="#myModal" >e</button>
-                  <div (click)="deleteTask(task)" class="btn btn-outline-danger " >X</div>
+                  <button (click)="editTask(task)"  class="btn btn-outline-primary  me-2" data-bs-toggle="modal" type="button" data-bs-target="#myModal" > <fa-icon [icon]="faEdit"></fa-icon>
+                  </button>
+                  <div (click)="deleteTask(task)" class="btn btn-outline-danger " ><fa-icon [icon]="faTrash"></fa-icon></div>
                 </div>
               </div>
             </div>
@@ -56,12 +57,12 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <input value="{{modalInput}}" #txtUpdate type="text" class="w-100">
+        <input value="{{modalInput}}" #txtUpdate id="txtUpdate" type="text" class="w-100">
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button (click)="updateTask(txtUpdate)" type="button" class="btn btn-danger" data-bs-dismiss="modal">Update</button>
+        <button (click)="updateTask(txtUpdate)" type="button" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
       </div>
 
     </div>

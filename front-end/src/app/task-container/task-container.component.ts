@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Task} from "../dto/task";
 import {HttpClient} from "@angular/common/http";
+import {faAdd, faCoffee, faEdit, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-task-container',
@@ -71,4 +72,10 @@ export class TaskContainerComponent {
       this.task = task;
     });
   }
+
+  protected readonly faCoffee = faCoffee;
+  protected readonly faTrash = faTrash;
+  protected readonly faEdit = faEdit;
+  protected readonly faAdd = faAdd;
+  protected readonly faPlus = faPlus;
 }
