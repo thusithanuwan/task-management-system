@@ -50,8 +50,11 @@ export class TaskContainerComponent {
   }
 
   updateTask(txtUpdate: HTMLInputElement) {
-    this.http.patch(`http://localhost:8080/app/api/v1/task/${this.task.id}`,txtUpdate.value.trim()).subscribe(data =>{
+    const newTask = new Task(this.task.id,txtUpdate.value.trim(),this.task.status);
+    this.http.patch(`http://localhost:8080/app/api/v1/task/${this.task.id}`,newTask).subscribe(data =>{
       this.task.description = txtUpdate.value.trim();
+      const modelDiv = document.getElementById('myModal')!;
+      modelDiv.style.display = 'none';
     })
   }
 
@@ -59,5 +62,13 @@ export class TaskContainerComponent {
     const modelDiv = document.getElementById('myModal')!;
     modelDiv.style.display = 'none';
 
+  }
+
+  updateStatus(task: Task) {
+    console.log(task.id);
+    const newTask = new Task(task.id,task.description,"COMPLETED");
+    this.http.patch(`http://localhost:8080/app/api/v1/task/${task.id}`,newTask).subscribe(data =>{
+      this.task = task;
+    });
   }
 }
