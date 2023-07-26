@@ -59,9 +59,10 @@ export class TaskContainerComponent {
     })
   }
 
-  closeModel() {
+  closeModel(txtUpdate: HTMLInputElement) {
     const modelDiv = document.getElementById('myModal')!;
     modelDiv.style.display = 'none';
+    txtUpdate.value = this.task.description;
 
   }
 
@@ -73,7 +74,6 @@ export class TaskContainerComponent {
     });
   }
 
-  protected readonly faCoffee = faCoffee;
   protected readonly faTrash = faTrash;
   protected readonly faEdit = faEdit;
   protected readonly faAdd = faAdd;
