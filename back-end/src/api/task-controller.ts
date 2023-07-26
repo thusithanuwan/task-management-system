@@ -24,3 +24,9 @@ type Task = {
     description:string,
     status:'COMPLETE' | 'NOT_COMPLETED' | undefined
 }
+
+/*  Get All task*/
+router.get("/",async (req,res)=>{
+    const task = await pool.query('SELECT * FROM task');
+    res.json(task);
+});
