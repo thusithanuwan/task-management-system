@@ -10,6 +10,8 @@ import {HttpClient} from "@angular/common/http";
 export class TaskContainerComponent {
 
   taskList: Array<Task> = [];
+  modalInput: string = "";
+  task : Task = null!;
 
   constructor(private http:HttpClient) {
     http.get<Array<Task>>('http://localhost:8080/app/api/v1/task')
@@ -36,6 +38,14 @@ export class TaskContainerComponent {
         const index : number = this.taskList.indexOf(task);
         this.taskList.splice(index, 1);
       })
+
+  }
+
+  editTask(task: Task) {
+    const modelDiv = document.getElementById('myModal')!;
+    modelDiv.style.display = 'block';
+    this.modalInput = task.description;
+    this.task = task;
 
   }
 }
