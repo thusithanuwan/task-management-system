@@ -48,4 +48,10 @@ export class TaskContainerComponent {
     this.task = task;
 
   }
+
+  updateTask(txtUpdate: HTMLInputElement) {
+    this.http.patch(`http://localhost:8080/app/api/v1/task/${this.task.id}`,txtUpdate.value.trim()).subscribe(data =>{
+      this.task.description = txtUpdate.value.trim();
+    })
+  }
 }
