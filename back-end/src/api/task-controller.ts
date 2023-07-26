@@ -30,3 +30,15 @@ router.get("/",async (req,res)=>{
     const task = await pool.query('SELECT * FROM task');
     res.json(task);
 });
+
+/* Save a new task */
+router.post("/",async (req,res)=>{
+    const task = (req.body as Task);
+    if(!task.description?.trim()){
+        res.sendStatus(400);
+        return;
+    }
+    const result =  await pool.query('INSERT INTO task (description) VALUE (?)',[task.description]);
+    task.id = result.insertId;
+    res.status(201).json(task);
+});
