@@ -29,4 +29,13 @@ export class TaskContainerComponent {
       txt.focus();
     });
   }
+
+  deleteTask(task: Task) {
+    this.http.delete(`http://localhost:8080/app/api/v1/task/${task.id}`)
+      .subscribe(data => {
+        const index : number = this.taskList.indexOf(task);
+        this.taskList.splice(index, 1);
+      })
+
+  }
 }
