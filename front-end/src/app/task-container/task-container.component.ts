@@ -54,4 +54,10 @@ export class TaskContainerComponent {
       this.task.description = txtUpdate.value.trim();
     })
   }
+
+  closeModel() {
+    const modelDiv = document.getElementById('myModal')!;
+    modelDiv.style.display = 'none';
+
+  }
 }
