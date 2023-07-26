@@ -38,7 +38,7 @@ router.post("/",async (req,res)=>{
         res.sendStatus(400);
         return;
     }
-    const result =  await pool.query('INSERT INTO task (description) VALUE (?)',[task.description]);
+    const result =  await pool.query('INSERT INTO task (description,status) VALUE (?,?)',[task.description,task.status]);
     task.id = result.insertId;
     res.status(201).json(task);
 });
@@ -57,6 +57,6 @@ router.patch("/:taskId",async (req,res) => {
         res.sendStatus(400);
         return;
     }
-    const result = await pool.query('UPDATE task SET description=?, status=? WHERE id=?',[task.description,task.description, task.id])
+    const result = await pool.query('UPDATE task SET description=?, status=? WHERE id=?',[task.description,task.status, task.id])
     res.sendStatus(result.affectedRows ? 204 : 404);
 });
